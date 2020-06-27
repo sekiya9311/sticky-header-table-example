@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import { SimpleTable } from "./SimpleTable";
+import { MaterialTable } from "./MaterialTable";
+import { RadioGroup, FormControlLabel, Radio } from "@material-ui/core";
+// import "./App.css";
 
-function App() {
+enum TableType {
+  Simple = "Simple",
+  Material = "Material",
+}
+const App = () => {
+  const [tableType, setTableType] = useState(TableType.Simple);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div
+      style={{
+        height: "100vh",
+        display: "flex",
+        flexDirection: "column",
+        overflowY: "hidden",
+      }}
+    >
+      <form>
+        <RadioGroup
+          value={tableType}
+          onChange={(e) => {
+            setTableType(e.target.value as TableType);
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <FormControlLabel
+            value={TableType.Simple}
+            control={<Radio />}
+            label={TableType.Simple}
+          />
+          <FormControlLabel
+            value={TableType.Material}
+            control={<Radio />}
+            label={TableType.Material}
+          />
+        </RadioGroup>
+      </form>
+      <main style={{ flexGrow: 1, overflowY: "auto" }}>
+        {tableType === TableType.Simple ? <SimpleTable /> : <MaterialTable />}
+      </main>
     </div>
   );
-}
+};
 
 export default App;
