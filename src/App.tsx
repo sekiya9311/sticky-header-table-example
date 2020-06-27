@@ -14,8 +14,6 @@ const App = () => {
     <div
       style={{
         height: "100vh",
-        display: "flex",
-        flexDirection: "column",
         overflowY: "hidden",
       }}
     >
@@ -38,7 +36,7 @@ const App = () => {
           />
         </RadioGroup>
       </form>
-      <main style={{ flexGrow: 1, overflowY: "auto" }}>
+      <main style={{ height: "100%", overflowY: "auto" }}>
         {tableType === TableType.Simple ? <SimpleTable /> : <MaterialTable />}
       </main>
     </div>

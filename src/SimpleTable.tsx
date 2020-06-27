@@ -1,9 +1,10 @@
 import React from "react";
 import { headers, items } from "./data";
 import { CSSProperties } from "@material-ui/core/styles/withStyles";
+import moduleStyle from "./SimpleTable.module.css";
 
 const styles: CSSProperties = {
-  position: "sticky",
+  // sticky は 'SimpleTable.module.css' で付ける
   top: 0,
 };
 const headerCellStyles: CSSProperties = {
@@ -18,11 +19,15 @@ const tableStyles: CSSProperties = {
 export const SimpleTable: React.FC = () => {
   return (
     <div style={{ height: "100%", overflowX: "auto" }}>
-      <table style={tableStyles}>
+      <table style={tableStyles} className={moduleStyle.sticky}>
         <thead>
           <tr>
             {headers.map((x) => (
-              <th key={x} style={headerCellStyles}>
+              <th
+                key={x}
+                style={headerCellStyles}
+                className={moduleStyle.sticky}
+              >
                 {x}
               </th>
             ))}
